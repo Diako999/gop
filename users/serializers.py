@@ -18,12 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"password": "Passwords must match."})
         return attrs
 
-import uuid
-import random
-from django.core.mail import send_mail
-
-...
-
 def create(self, validated_data):
     validated_data.pop('password2')
     password = validated_data.pop('password')
