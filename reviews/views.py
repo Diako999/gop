@@ -12,6 +12,7 @@ class IsVerifiedBuyer(permissions.BasePermission):
         return obj.user == request.user
 
 class ProductReviewViewSet(viewsets.ModelViewSet):
+    queryset = ProductReview.objects.all()
     serializer_class = ProductReviewSerializer
     permission_classes = [IsVerifiedBuyer]
 
@@ -25,6 +26,7 @@ class ProductReviewViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 class SellerReviewViewSet(viewsets.ModelViewSet):
+    queryset = SellerReview.objects.all()
     serializer_class = SellerReviewSerializer
     permission_classes = [IsVerifiedBuyer]
 
