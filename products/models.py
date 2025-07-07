@@ -17,6 +17,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField()
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    average_rating = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
