@@ -3,6 +3,8 @@ from .serializers import FollowSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
+
 
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
@@ -14,7 +16,7 @@ class FollowViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         seller = serializer.validated_data['seller']
         if not seller.is_seller:
-            raise serializers.ValidationError("Target user is not a seller.")
+            raise ValidationError("Target user is not a seller.")
         serializer.save(follower=self.request.user)
 
     @action(detail=True, methods=['delete'], url_path='unfollow')

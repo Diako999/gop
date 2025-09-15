@@ -4,7 +4,7 @@ from .views import ProductViewSet
 from .views import FollowedSellersFeedView
 
 router = DefaultRouter()
-router.register(r'my-products', ProductViewSet, basename='my-products')
+router.register(r'', ProductViewSet, basename='products')
 
 urlpatterns = router.urls
 

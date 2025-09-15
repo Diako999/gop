@@ -25,14 +25,15 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         seller_profile = SellerProfile.objects.get(user=self.request.user)
-        serializer.save(seller=seller_profile)
+        print(f"here is the seller profile ***************** {seller_profile.user}")
+        product = serializer.save(seller=seller_profile)
         # Notify followers
-        followers = Follow.objects.filter(seller=self.request.user)
-        for follow in followers:
-            send_notification.delay(
-                follow.follower.id,
-                f"{self.request.user.username} just added a new product: {Product.name}"
-            )
+        # followers = Follow.objects.filter(seller=self.request.user)
+        # for follow in followers:
+        #     send_notification.delay(
+        #         follow.follower.id,
+        #         f"{self.request.user.username} just added a new product: {Product.name}"
+        #     )
 
 class FollowedSellersFeedView(generics.ListAPIView):
     serializer_class = ProductSerializer
