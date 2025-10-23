@@ -1,0 +1,397 @@
+{
+  "info": {
+    "name": "GOP Backend API Collection",
+    "_postman_id": "gop-backend-api-collection",
+    "description": "Postman collection to test the GOP backend APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/auth/register/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"testuser3\", \"email\": \"test@example.com\", \"phone_number\": \"09120000000\", \"password\": \"Diako999\", \"password2\": \"Diako999\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Verify Email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/auth/verify-email/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "auth",
+            "verify-email"
+          ],
+          "query": [
+            {
+              "key": "token",
+              "value": "<TOKEN>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Verify Phone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/auth/verify-phone/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "auth",
+            "verify-phone"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"phone_number\": \"09120000000\", \"code\": \"123456\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/token/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "token"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"testuser3\", \"password\": \"Diako999\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/products/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Test Fabric\", \"price\": 75000, \"description\": \"High-quality traditional fabric\", \"category\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Follow Seller",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/follow/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "follow"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"seller\": 2}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Followed Sellers Feed",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/products/followed-sellers/feed/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "products",
+            "followed-sellers",
+            "feed"
+          ],
+          "query": []
+        }
+      }
+    },
+    {
+      "name": "Place Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/orders/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "orders"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"product\": 1, \"quantity\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Pay for Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/orders/1/pay/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "orders",
+            "1",
+            "pay"
+          ],
+          "query": []
+        }
+      }
+    },
+    {
+      "name": "Verify Payment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/payment/verify/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "payment",
+            "verify"
+          ],
+          "query": [
+            {
+              "key": "order_id",
+              "value": "1"
+            },
+            {
+              "key": "Authority",
+              "value": "<AUTH>"
+            },
+            {
+              "key": "Status",
+              "value": "OK"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Submit Product Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/reviews/product-reviews/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "reviews",
+            "product-reviews"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"product\": 1, \"rating\": 5, \"comment\": \"Beautiful fabric!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Submit Seller Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/reviews/seller-reviews/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "reviews",
+            "seller-reviews"
+          ],
+          "query": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"seller\": 2, \"rating\": 4, \"comment\": \"Responsive and fast shipping\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Get Notifications",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/notifications/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "notifications"
+          ],
+          "query": []
+        }
+      }
+    }
+  ]
+}
