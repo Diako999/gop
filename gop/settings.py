@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # GOP apps
     'users',
     'sellers',
-    'products',
+    'products.apps.ProductsConfig',  # Use app config to create default category
     'orders',
     'reviews',
     'notifications',
@@ -154,3 +154,9 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Payment Gateway Configuration
+# For testing, use Zarinpal sandbox merchant ID
+# Get your merchant ID from: https://zarinpal.com
+ZARINPAL_MERCHANT_ID = os.environ.get('ZARINPAL_MERCHANT_ID', 'test-merchant-id-for-development')

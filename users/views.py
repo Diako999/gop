@@ -12,11 +12,26 @@ import kavenegar
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
+    
+    def create(self, request, *args, **kwargs):
+        # For testing: auto-activate users in development
+        response = super().create(request, *args, **kwargs)
+        if response.status_code in [200, 201]:
+            user = CustomUser.objects.get(username=request.data.get('username'))
+            # Auto-activate for testing (remove in production)
+            user.is_active = True
+            if user.is_seller:
+                user.is_verified = True  # Auto-verify sellers for testing
+            user.save()
+        return response
 
 
 class VerifyEmailView(APIView):
     def get(self, request):
         token = request.GET.get('token')
+        if not token:
+            return Response({"detail": "Token parameter is required."}, status=400)
+        
         try:
             user = CustomUser.objects.get(email_verification_token=token)
             user.is_active = True
